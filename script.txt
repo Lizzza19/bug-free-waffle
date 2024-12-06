@@ -1,0 +1,27 @@
+#!/bin/bash
+are_element(){
+	element=("$@")
+	d=${#element[@]}
+	for i in $(seq 0 $((d-1)))
+	do
+		for j in $(seq $((i+1)) $((d-1)))
+		do
+			if [ "${element[i]}" = "${element[j]}" ]
+			then
+			echo "Duplicate: ${element[i]}"
+			return 1
+			fi
+		done
+	done
+	return 0
+}
+if [ "$#" -eq 0 ]
+then
+echo "No elements"
+fi
+if are_element "$@"
+then
+	echo "Uniqueness"
+else
+	echo "No uniqueness"
+fi
