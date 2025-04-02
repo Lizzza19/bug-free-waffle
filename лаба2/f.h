@@ -19,7 +19,13 @@ namespace nm {
         Music(std::string artist, std::string titles, std::string album)
             : artist(artist), titles(titles), album(album) {
         }
+        friend istream& operator>>(istream& in, Music& m);
+        friend ostream& operator<<(ostream& out, const Music& m);
+        friend void search();
+        friend void print();
     };
+    istream& operator>>(istream& in, Music& m);
+    ostream& operator<<(ostream& out, const Music& m);
     void input(Music** m, int& n);
     void print(Music* m, int n);
     void save(Music* m, int n);

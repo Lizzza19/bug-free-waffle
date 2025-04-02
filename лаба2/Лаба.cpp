@@ -13,12 +13,24 @@ public:
     string getAlbum() const { return album; }
     void setArtist(string a) { artist = a; }
     void setTitles(string t) { titles = t; }
-    void setAlbum(string al) { album = al; }
+    void setAlbum(string al) { album = al; }    
     Music() : artist(""), titles(""), album("") {}
     Music(std::string artist, std::string titles, std::string album)
         : artist(artist), titles(titles), album(album) {
     }
+    friend istream& operator>>(istream& in, Music& m);
+    friend ostream& operator<<(ostream& out, const Music& m);
+    friend void search();
+    friend void print();
 };
+istream& operator>>(istream& in, Music& m) {
+    in >> m.artist >> m.titles >> m.album;
+    return in;
+}
+ostream& operator<<(ostream& out, const Music& m) {
+    out << m.artist << m.titles << m.album;
+    return out;
+}
 void input(Music** m, int& n) {
     std::cout << "Number of songs";
     while (!(cin >> n)||n<0) {

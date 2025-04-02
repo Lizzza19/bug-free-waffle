@@ -4,6 +4,14 @@
 #include "f. h"
 using namespace std;
 using namespace nm;
+istream& operator>>(istream& in, Music& m) {
+    in >> m.artist >> m.titles >> m.album;
+    return in;
+}
+ostream& operator<<(ostream& out, const Music& m) {
+    out << m.artist << m.titles << m.album;
+    return out;
+}
 void input(Music** m, int& n) {
     std::cout << "Number of songs";
     while (!(cin >> n) || n < 0) {
